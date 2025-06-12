@@ -5,8 +5,8 @@ export class LinkedList{
     constructor(){
         this.head = new Node();
     }
-    append(value){
-        let newNode = new Node(value);
+    append(key, value){
+        let newNode = new Node(key, value);
         if (this.head.nextNode === null){
             this.head.nextNode = newNode;
         }else{
@@ -17,8 +17,8 @@ export class LinkedList{
             cur.nextNode = newNode;
         }
     }
-    prepend(value){
-        let newNode = new Node(value);
+    prepend(key, value){
+        let newNode = new Node(key, value);
         newNode.nextNode = this.head.nextNode;
         this.head.nextNode = newNode;
     }
@@ -62,7 +62,7 @@ export class LinkedList{
         }
         cur.nextNode = null;
     }
-    contains(value){
+    containsValue(value){
         let cur = this.head;
         let bool = false;
         while (cur != null) {
@@ -73,11 +73,34 @@ export class LinkedList{
         }
         return bool;
     }
-    find(value){
+    containsKey(key){
+        let cur = this.head;
+        let bool = false;
+        while (cur != null) {
+            if(cur.key === key){
+                bool = true;
+            }
+            cur = cur.nextNode;
+        }
+        return bool;
+    }
+    findValue(value){
         let cur = this.head;
         let curIndex = -1;
         while (cur != null) {
             if(cur.value === value){
+                return curIndex;
+            }
+            cur = cur.nextNode;
+            curIndex++;
+        }
+        return null;
+    }
+    findKey(key){
+        let cur = this.head;
+        let curIndex = -1;
+        while (cur != null) {
+            if(cur.key === key){
                 return curIndex;
             }
             cur = cur.nextNode;
@@ -90,6 +113,8 @@ export class LinkedList{
         let cur = this.head.nextNode;
         while (cur != null) {
             output += "( ";
+            output += cur.key;
+            output += ", ";
             output += cur.value;
             output += " ) -> ";
 
