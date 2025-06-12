@@ -3,10 +3,12 @@ import { LinkedList } from "./LinkedList.js";
 export class HashMap {
     loadFactor;
     capacity;
+    arr;
 
     constructor(loadFactor, capacity) {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
+        arr = new Array(capacity);
     }
 
     hash(key){
@@ -20,4 +22,5 @@ export class HashMap {
 
         return hashCode;
     }
+
 }
