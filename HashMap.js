@@ -23,4 +23,19 @@ export class HashMap {
         return hashCode;
     }
 
+    set(key, value){
+        //check current size of table and confirm whether to grow or not
+
+        let hashCode = hash(key);
+
+        if (!this.arr[hashCode]){
+            this.arr[hashCode] = new LinkedList();
+            this.arr[hashCode].append(key, value);
+        }else if(this.arr[hashCode].containsKey(key)){
+            //need new method in LinkedList to change the value of a node with a certain key
+        }else{
+            //append new key, value pair
+        }
+    }
+
 }
