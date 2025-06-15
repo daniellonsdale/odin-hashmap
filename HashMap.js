@@ -34,7 +34,7 @@ export class HashMap {
         }else if(this.arr[hashCode].containsKey(key)){
             this.arr[hashCode].changeValue(key, value);
         }else{
-            //append new key, value pair
+            this.arr[hashCode].append(key, value);
         }
     }
 
