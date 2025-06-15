@@ -84,6 +84,15 @@ export class LinkedList{
         }
         return bool;
     }
+    changeValue(key, value){
+        let cur = this.head;
+        while (cur != null) {
+            if(cur.key === key){
+                cur.value = value;
+            }
+            cur = cur.nextNode;
+        }
+    }
     findValue(value){
         let cur = this.head;
         let curIndex = -1;
