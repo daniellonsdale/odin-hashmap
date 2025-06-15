@@ -10,7 +10,7 @@ export class HashMap {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
         this.entries = 0;
-        arr = new Array(capacity);
+        this.arr = new Array(capacity);
     }
 
     hash(key){
@@ -28,7 +28,7 @@ export class HashMap {
     set(key, value){
         this.checkCapacity();
 
-        let hashCode = hash(key);
+        let hashCode = this.hash(key);
 
         if (!this.arr[hashCode]){
             this.arr[hashCode] = new LinkedList();
@@ -43,45 +43,45 @@ export class HashMap {
     }
 
     get(key){
-        let value = null;
-        this.arr.forEach(element => {
-            for (let i = 0; i < element.size(); i++){
-                if (element.containsKey(key)){
-                    value = element.at(element.findKey(key)).value;
-                }
+        for (let element of this.arr) {
+            if (element && element.containsKey(key)) {
+                return element.at(element.findKey(key)).value;
             }
-        });
-        return value;
+        }
+        return null;
     }
 
+
     has(key){
-        let contains = false;
-        this.arr.forEach(element => {
-            for (let i = 0; i < element.size(); i++){
-                if (element.containsKey(key)){
-                    contains = true;
-                }
+        for (let element of this.arr){
+            if (element && element.containsKey(key)){
+                return true;
             }
-        });
-        return contains;
+        }
+        return false;
     }
 
     checkCapacity(){
-        if (this.loadFactor * this.capacity >= this.entries){
+        if (this.entries >= this.loadFactor * this.capacity){
             this.grow();
         }
     }
 
     grow(){
         this.capacity *= 2;
-        let arrCopy = structuredClone(this.arr);
+        const oldArr = this.arr;
         this.arr = new Array(this.capacity);
+        this.entries = 0;
 
-        arrCopy.forEach(element => {
-            for (let i = 0; i < element.size(); i++){
-                this.set(element.at(i).key, element.at(i).value);
+        for (let element of oldArr) {
+            if (element) {
+                for (let i = 0; i < element.size(); i++) {
+                    const node = element.at(i);
+                    this.set(node.key, node.value);
+                }
             }
-        });
+        }
     }
+
 
 }

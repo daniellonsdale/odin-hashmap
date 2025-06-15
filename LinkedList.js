@@ -46,14 +46,17 @@ export class LinkedList{
         }
         return cur;
     }
-    at(index){
+    at(index) {
         let cur = this.head.nextNode;
-        for (let i = 0; i <= index; i++) {
-            if (i == index){
+        let i = 0;
+        while (cur !== null) {
+            if (i === index) {
                 return cur;
             }
             cur = cur.nextNode;
+            i++;
         }
+        return null;
     }
     pop(){
         let cur = this.head;
@@ -117,18 +120,21 @@ export class LinkedList{
         }
         return null;
     }
-    toString(){
+    toString() {
         let output = "";
         let cur = this.head.nextNode;
-        while (cur != null) {
-            output += "( ";
-            output += cur.key;
-            output += ", ";
-            output += cur.value;
-            output += " ) -> ";
+        const visited = new Set(); // track visited nodes
 
+        while (cur != null) {
+            if (visited.has(cur)) {
+                output += "(cycle detected)";
+                break;
+            }
+            visited.add(cur);
+            output += `( ${cur.key}, ${cur.value} ) -> `;
             cur = cur.nextNode;
         }
+
         output += "null";
         return output;
     }
