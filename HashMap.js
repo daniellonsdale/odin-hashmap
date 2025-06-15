@@ -32,7 +32,7 @@ export class HashMap {
             this.arr[hashCode] = new LinkedList();
             this.arr[hashCode].append(key, value);
         }else if(this.arr[hashCode].containsKey(key)){
-            //need new method in LinkedList to change the value of a node with a certain key
+            this.arr[hashCode].changeValue(key, value);
         }else{
             //append new key, value pair
         }
