@@ -3,11 +3,13 @@ import { LinkedList } from "./LinkedList.js";
 export class HashMap {
     loadFactor;
     capacity;
+    entries;
     arr;
 
     constructor(loadFactor, capacity) {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
+        this.entries = 0;
         arr = new Array(capacity);
     }
 
@@ -24,18 +26,38 @@ export class HashMap {
     }
 
     set(key, value){
-        //check current size of table and confirm whether to grow or not
+        this.checkCapacity();
 
         let hashCode = hash(key);
 
         if (!this.arr[hashCode]){
             this.arr[hashCode] = new LinkedList();
             this.arr[hashCode].append(key, value);
+            this.entries++;
         }else if(this.arr[hashCode].containsKey(key)){
             this.arr[hashCode].changeValue(key, value);
         }else{
             this.arr[hashCode].append(key, value);
+            this.entries++;
         }
+    }
+
+    checkCapacity(){
+        if (this.loadFactor * this.capacity >= this.entries){
+            this.grow();
+        }
+    }
+
+    grow(){
+        this.capacity *= 2;
+        let arrCopy = structuredClone(this.arr);
+        this.arr = new Array(this.capacity);
+        
+        arrCopy.array.forEach(element => {
+            for (let i = 0; i < element.size(); i++){
+                this.set(element.at(i).key, element.at(i).value);
+            }
+        });
     }
 
 }
