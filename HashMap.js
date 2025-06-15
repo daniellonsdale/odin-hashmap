@@ -42,6 +42,18 @@ export class HashMap {
         }
     }
 
+    get(key){
+        let value = null;
+        this.arr.forEach(element => {
+            for (let i = 0; i < element.size(); i++){
+                if (element.containsKey(key)){
+                    value = element.at(element.findKey(key)).value;
+                }
+            }
+        });
+        return value;
+    }
+
     checkCapacity(){
         if (this.loadFactor * this.capacity >= this.entries){
             this.grow();
@@ -52,8 +64,8 @@ export class HashMap {
         this.capacity *= 2;
         let arrCopy = structuredClone(this.arr);
         this.arr = new Array(this.capacity);
-        
-        arrCopy.array.forEach(element => {
+
+        arrCopy.forEach(element => {
             for (let i = 0; i < element.size(); i++){
                 this.set(element.at(i).key, element.at(i).value);
             }
