@@ -54,6 +54,18 @@ export class HashMap {
         return value;
     }
 
+    has(key){
+        let contains = false;
+        this.arr.forEach(element => {
+            for (let i = 0; i < element.size(); i++){
+                if (element.containsKey(key)){
+                    contains = true;
+                }
+            }
+        });
+        return contains;
+    }
+
     checkCapacity(){
         if (this.loadFactor * this.capacity >= this.entries){
             this.grow();
