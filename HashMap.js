@@ -64,6 +64,7 @@ export class HashMap {
     remove(key){
         for (let element of this.arr){
             if (element && element.remove(key)){
+                this.reHash();
                 return true;
             }
         }
@@ -78,6 +79,21 @@ export class HashMap {
 
     grow(){
         this.capacity *= 2;
+        const oldArr = this.arr;
+        this.arr = new Array(this.capacity);
+        this.entries = 0;
+
+        for (let element of oldArr) {
+            if (element) {
+                for (let i = 0; i < element.size(); i++) {
+                    const node = element.at(i);
+                    this.set(node.key, node.value);
+                }
+            }
+        }
+    }
+
+    reHash(){
         const oldArr = this.arr;
         this.arr = new Array(this.capacity);
         this.entries = 0;
