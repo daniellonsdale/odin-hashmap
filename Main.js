@@ -42,3 +42,5 @@ for (let i = 0; i < test.arr.length; i++) {
         console.log(`Bucket ${i}: ${bucket.toString()}`);
     }
 }
+
+console.log(test.length());

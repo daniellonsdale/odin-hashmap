@@ -71,6 +71,16 @@ export class HashMap {
         return false;
     }
 
+    length(){
+        let sum = 0;
+        for (let element of this.arr){
+            if (element){
+                sum += element.size();
+            }
+        }
+        return sum;
+    }
+
     checkCapacity(){
         if (this.entries >= this.loadFactor * this.capacity){
             this.grow();
