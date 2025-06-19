@@ -45,6 +45,8 @@ for (let i = 0; i < test.arr.length; i++) {
 
 console.log("PRINT KEY ARRAY");
 console.log(test.keys());
+console.log("PRINT VALUE ARRAY");
+console.log(test.values());
 console.log("PRINT LENGTH");
 console.log(test.length());
 
