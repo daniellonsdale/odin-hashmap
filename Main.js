@@ -47,6 +47,8 @@ console.log("PRINT KEY ARRAY");
 console.log(test.keys());
 console.log("PRINT VALUE ARRAY");
 console.log(test.values());
+console.log("PRINT ENTRIES ARRAY");
+console.log(test.entriesArray());
 console.log("PRINT LENGTH");
 console.log(test.length());
 

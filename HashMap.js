@@ -97,6 +97,19 @@ export class HashMap {
         return valArr;
     }
 
+    entriesArray(){
+        let entriesArr = [];
+        for (let element of this.arr){
+            if (element){
+                for (let i = 0; i < element.size(); i++) {
+                    const node = element.at(i);
+                    entriesArr.push([node.key, node.value]);
+                }
+            }
+        }
+        return entriesArr;
+    }
+
     length(){
         let sum = 0;
         for (let element of this.arr){
