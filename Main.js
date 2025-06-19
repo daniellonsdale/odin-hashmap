@@ -44,3 +44,24 @@ for (let i = 0; i < test.arr.length; i++) {
 }
 
 console.log(test.length());
+
+test.clear();
+console.log("CLEARED");
+for (let i = 0; i < test.arr.length; i++) {
+    const bucket = test.arr[i];
+    if (bucket) {
+        console.log(`Bucket ${i}: ${bucket.toString()}`);
+    }
+}
+
+test.set('dog', 'gray');
+test.set('elephant', 'purple');
+test.set('frog', 'yellow');
+console.log("SET 3 NEW ELEMENTS");
+
+for (let i = 0; i < test.arr.length; i++) {
+    const bucket = test.arr[i];
+    if (bucket) {
+        console.log(`Bucket ${i}: ${bucket.toString()}`);
+    }
+}

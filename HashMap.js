@@ -87,6 +87,12 @@ export class HashMap {
         }
     }
 
+    clear(){
+        this.capacity = 16;
+        this.entries = 0;
+        this.arr = new Array(this.capacity);
+    }
+
     grow(){
         this.capacity *= 2;
         const oldArr = this.arr;
