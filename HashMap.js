@@ -61,6 +61,15 @@ export class HashMap {
         return false;
     }
 
+    remove(key){
+        for (let element of this.arr){
+            if (element.remove(key)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     checkCapacity(){
         if (this.entries >= this.loadFactor * this.capacity){
             this.grow();
