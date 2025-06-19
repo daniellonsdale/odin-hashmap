@@ -71,6 +71,19 @@ export class HashMap {
         return false;
     }
 
+    keys(){
+        let keyArr = [];
+        for (let element of this.arr){
+            if (element){
+                for (let i = 0; i < element.size(); i++) {
+                    const node = element.at(i);
+                    keyArr.push(node.key);
+                }
+            }
+        }
+        return keyArr;
+    }
+
     length(){
         let sum = 0;
         for (let element of this.arr){
