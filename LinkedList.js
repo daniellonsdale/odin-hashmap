@@ -120,6 +120,19 @@ export class LinkedList{
         }
         return null;
     }
+    remove(key){
+        let cur = this.head;
+        let prev;
+        while (cur != null) {
+            if(cur.key === key){
+                prev.nextNode = cur.nextNode;
+                return true;
+            }
+            prev = cur;
+            cur = cur.nextNode;
+        }
+        return false;
+    }
     toString() {
         let output = "";
         let cur = this.head.nextNode;
