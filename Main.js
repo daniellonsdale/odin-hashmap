@@ -32,3 +32,13 @@ for (let i = 0; i < test.arr.length; i++) {
         console.log(`Bucket ${i}: ${bucket.toString()}`);
     }
 }
+
+console.log("REMOVE ELEPHANT");
+test.remove('elephant');
+
+for (let i = 0; i < test.arr.length; i++) {
+    const bucket = test.arr[i];
+    if (bucket) {
+        console.log(`Bucket ${i}: ${bucket.toString()}`);
+    }
+}
