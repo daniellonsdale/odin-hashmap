@@ -63,7 +63,7 @@ export class HashMap {
 
     remove(key){
         for (let element of this.arr){
-            if (element.remove(key)){
+            if (element && element.remove(key)){
                 return true;
             }
         }
